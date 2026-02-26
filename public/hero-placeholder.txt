@@ -1,0 +1,6 @@
+Add hero carousel images here:
+- hero-1.jpg
+- hero-2.jpg
+- hero-3.jpg
+
+Use cybersecurity/professional servicing imagery. If files are missing, the hero shows a gradient background.
