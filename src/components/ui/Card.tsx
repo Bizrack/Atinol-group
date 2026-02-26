@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 type CardProps = {
   children: ReactNode;
   className?: string;
-  as?: "div" | "article";
+  as?: "div" | "article" | "blockquote";
 };
 
 export function Card({
