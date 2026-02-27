@@ -11,7 +11,14 @@
 }
 
 body {
-  @apply bg-slate-50 text-atinol-dark antialiased;
+  margin: 0;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, #bfdbfe 0%, #dbeafe 50%, #bae6fd 100%);
+  background-attachment: fixed;
+  color: #0f172a;
+  min-height: 100vh;
 }
 
 @layer utilities {

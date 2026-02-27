@@ -25,11 +25,11 @@ export function Testimonials() {
       title="What Clients Say"
       subtitle="Trusted by organizations who take security seriously."
     >
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {TESTIMONIALS.map((t, i) => (
-          <Card key={i} as="blockquote">
-            <p className="text-atinol-dark italic mb-4">&ldquo;{t.quote}&rdquo;</p>
-            <footer className="text-sm text-atinol-muted">— {t.author}</footer>
+          <Card key={i} as="blockquote" variant="glass" className="p-6 sm:p-8">
+            <p className="text-atinol-dark italic mb-6 text-base sm:text-lg leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+            <footer className="text-sm sm:text-base text-atinol-muted">— {t.author}</footer>
           </Card>
         ))}
       </div>

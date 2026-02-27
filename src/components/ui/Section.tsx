@@ -6,14 +6,21 @@ type SectionProps = {
   subtitle?: string;
   children: ReactNode;
   className?: string;
-  variant?: "default" | "dark" | "highlight";
+  variant?: "default" | "dark" | "dark-blue" | "highlight" | "glass" | "glass-dark";
 };
 
 const variantStyles = {
-  default: "bg-slate-50 text-atinol-dark",
-  dark: "bg-atinol-dark text-slate-100",
+  default:
+    "bg-white/50 backdrop-blur-md text-atinol-dark border-y border-white/20",
+  dark: "bg-slate-900/50 backdrop-blur-xl text-slate-100 border-y border-white/10",
+  "dark-blue":
+    "bg-atinol-blue/95 backdrop-blur-sm text-slate-100 border-y border-atinol-blue-light/30",
   highlight:
-    "bg-gradient-to-br from-atinol-blue/10 via-atinol-teal/10 to-atinol-green/10 text-atinol-dark",
+    "bg-white/45 backdrop-blur-md text-atinol-dark border-y border-white/25",
+  glass:
+    "bg-white/50 backdrop-blur-md text-atinol-dark border-y border-white/20",
+  "glass-dark":
+    "bg-slate-900/90 backdrop-blur-xl text-slate-100 border-y border-white/10",
 };
 
 export function Section({
@@ -27,18 +34,30 @@ export function Section({
   return (
     <section
       id={id}
-      className={`py-16 md:py-20 px-4 sm:px-6 lg:px-8 ${variantStyles[variant]} ${className}`}
+      className={`py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 ${variantStyles[variant]} ${className}`}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto animate-fade-in-up">
         {(title || subtitle) && (
-          <div className="text-center mb-12">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
             {title && (
-              <h2 className="text-2xl md:text-3xl font-bold text-gradient-brand mb-2">
+              <h2
+                className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 ${
+                  variant === "dark-blue" || variant === "glass-dark"
+                    ? "text-white"
+                    : "text-gradient-brand"
+                }`}
+              >
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="text-atinol-muted text-lg max-w-2xl mx-auto">
+              <p
+                className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto ${
+                  variant === "dark-blue" || variant === "glass-dark"
+                    ? "text-slate-300"
+                    : "text-atinol-muted"
+                }`}
+              >
                 {subtitle}
               </p>
             )}

@@ -3,6 +3,8 @@ export const SITE = {
   legalName: "The Atinol Group Corp (T.A.G. Corp)",
   tagline: "Safeguarding Your Assets in a Cyber World",
   email: "tagcorp@theatinolgroup.com",
+  /** Optional; leave empty to hide phone on contact page */
+  phone: "",
   domain: "https://theatinolgroup.com",
   linkedInCompany: "https://www.linkedin.com/company/91166117",
   linkedInCEO: "https://www.linkedin.com/in/ayo-asekun",
@@ -16,7 +18,7 @@ export const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/book", label: "Book Consultation" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const SERVICES = [
@@ -62,6 +64,14 @@ export const SERVICES = [
       "Ongoing monitoring and management to keep your business ahead of threats.",
     slug: "monitoring-management",
   },
+] as const;
+
+/** Hero "Focus Areas" panel (right side, Blackoak-style) */
+export const HERO_FOCUS_ITEMS = [
+  { title: "IT Consulting", short: "Strategy, architecture, compliance", icon: "💼" },
+  { title: "Secure Architecture", short: "Zero Trust, cloud, hybrid", icon: "🏗️" },
+  { title: "Risk & Vulnerability", short: "Assessments, prioritization", icon: "🔍" },
+  { title: "Incident & Monitoring", short: "Response, proactive management", icon: "🛡️" },
 ] as const;
 
 export const WHY_CHOOSE_US = [

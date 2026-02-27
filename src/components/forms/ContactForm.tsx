@@ -41,9 +41,12 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
   }
 
   return (
+    <div
+      className={`rounded-xl border border-white/25 bg-white/70 backdrop-blur-md shadow-lg p-6 sm:p-8 ${className}`}
+    >
     <form
       onSubmit={handleSubmit}
-      className={`space-y-4 ${className}`}
+      className="space-y-4"
     >
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-atinol-dark mb-1">
@@ -54,7 +57,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
           name="name"
           type="text"
           required
-          className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/20 outline-none"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="Your name"
         />
       </div>
@@ -67,7 +70,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
           name="email"
           type="email"
           required
-          className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/20 outline-none"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="your@email.com"
         />
       </div>
@@ -79,7 +82,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
           id="phone"
           name="phone"
           type="tel"
-          className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/20 outline-none"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="+1 (555) 000-0000"
         />
       </div>
@@ -92,7 +95,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
           name="message"
           required
           rows={4}
-          className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/20 outline-none resize-none"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none resize-none transition-all placeholder:text-slate-500"
           placeholder="How can we help?"
         />
       </div>
@@ -106,5 +109,6 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
         {status === "sending" ? "Sending…" : "Send"}
       </Button>
     </form>
+    </div>
   );
 }

@@ -13,18 +13,18 @@ export function WhyChooseUs() {
     <Section
       title="Why Choose Us"
       subtitle="Partner with a team that puts your security first."
-      variant="dark"
+      variant="glass-dark"
     >
-      <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {WHY_CHOOSE_US.map((item, i) => (
           <li
             key={i}
-            className="flex gap-4 p-4 rounded-lg bg-white/5 border border-white/10"
+            className="flex gap-4 p-5 sm:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300"
           >
-            <span className="text-2xl shrink-0" aria-hidden>
+            <span className="text-2xl sm:text-3xl shrink-0" aria-hidden>
               {icons[i]}
             </span>
-            <p className="text-slate-200 text-sm leading-relaxed">{item}</p>
+            <p className="text-slate-200 text-sm sm:text-base leading-relaxed">{item}</p>
           </li>
         ))}
       </ul>

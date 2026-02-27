@@ -12,7 +12,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-atinol-dark text-white">
+      <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             About The Atinol Group
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section title="Experience" id="experience" variant="dark">
+      <Section title="Experience" id="experience" variant="glass-dark">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-slate-200 leading-relaxed mb-6">
             Clients work directly with experienced leadership, ensuring
@@ -94,7 +94,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <section className="py-12 px-4 text-center bg-slate-50">
+      <section className="py-12 px-4 text-center bg-white/40 backdrop-blur-md border-y border-white/20">
         <Button href="/book">Book a Consultation</Button>
       </section>
     </>

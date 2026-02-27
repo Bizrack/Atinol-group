@@ -77,7 +77,7 @@ export function HeroSection() {
           <Button href="/book" variant="primary" className="!text-white border-0">
             Get Started
           </Button>
-          <Button href="/#contact" variant="outline" className="!border-white !text-white hover:!bg-white/10">
+          <Button href="/contact" variant="outline" className="!border-white !text-white hover:!bg-white/10">
             Contact Us
           </Button>
         </div>

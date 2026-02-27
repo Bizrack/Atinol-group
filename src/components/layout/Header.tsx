@@ -10,35 +10,35 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-slate-900/25 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
-          <Logo />
+          <Logo variant="header" />
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className="text-atinol-dark font-medium hover:text-atinol-teal transition-colors"
+                className="rounded-lg px-3 py-2 text-slate-200 font-medium hover:bg-white/10 hover:text-white transition-colors duration-200"
               >
                 {label}
               </Link>
             ))}
-            <Button href="/book" variant="primary">
+            <Button href="/book" variant="glass" className="ml-2">
               Book Consultation
             </Button>
           </nav>
 
           <div className="md:hidden flex items-center gap-2">
-            <Button href="/book" variant="primary" className="text-sm py-2">
+            <Button href="/book" variant="glass" className="text-sm py-2">
               Book
             </Button>
             <button
               type="button"
               aria-label="Toggle menu"
               onClick={() => setOpen((o) => !o)}
-              className="p-2 rounded-lg text-atinol-dark hover:bg-slate-100"
+              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <svg
                 className="w-6 h-6"
@@ -67,14 +67,14 @@ export function Header() {
         </div>
 
         {open && (
-          <div className="md:hidden py-4 border-t border-slate-200">
-            <nav className="flex flex-col gap-2">
+          <div className="md:hidden py-4 border-t border-white/10">
+            <nav className="flex flex-col gap-1">
               {NAV_LINKS.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="py-2 text-atinol-dark font-medium hover:text-atinol-teal"
+                  className="rounded-lg py-2.5 px-3 text-slate-200 font-medium hover:bg-white/10 hover:text-white"
                 >
                   {label}
                 </Link>

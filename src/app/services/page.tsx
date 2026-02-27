@@ -84,7 +84,7 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-atinol-dark text-white">
+      <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
           <p className="text-slate-300 text-lg">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                 id={service.slug}
                 className="scroll-mt-24"
               >
-                <Card className="max-w-4xl mx-auto">
+                <Card variant="glass" className="max-w-4xl mx-auto">
                   <CardTitle as="h2">{service.name}</CardTitle>
                   <p className="text-atinol-muted mb-6">{detail.description}</p>
                   <div className="mb-6">

@@ -13,7 +13,7 @@ export function ShortDescriptionSection() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button href="/book">Book a Consultation</Button>
-          <Button href="/#contact" variant="outline">
+          <Button href="/contact" variant="outline">
             Contact Us
           </Button>
         </div>

@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site-config";
 type LogoProps = {
   className?: string;
   showTagline?: boolean;
-  variant?: "default" | "light";
+  variant?: "default" | "light" | "header";
 };
 
 export function Logo({
@@ -12,14 +12,13 @@ export function Logo({
   showTagline = false,
   variant = "default",
 }: LogoProps) {
-  const gradient =
-    variant === "light"
-      ? "from-slate-200 via-atinol-teal-light to-atinol-green-light"
-      : "from-atinol-blue via-atinol-teal to-atinol-green";
-  const groupGradient =
-    variant === "light"
-      ? "from-atinol-teal-light to-atinol-green-light"
-      : "from-atinol-teal to-atinol-green";
+  const isLight = variant === "light" || variant === "header";
+  const gradient = isLight
+    ? "from-slate-200 via-atinol-teal-light to-atinol-green-light"
+    : "from-atinol-blue via-atinol-teal to-atinol-green";
+  const groupGradient = isLight
+    ? "from-atinol-teal-light to-atinol-green-light"
+    : "from-atinol-teal to-atinol-green";
 
   return (
     <Link href="/" className={`inline-block ${className}`}>
