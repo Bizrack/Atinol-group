@@ -1,7 +1,7 @@
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Card, CardTitle } from "@/components/ui/Card";
-import { SITE } from "@/lib/site-config";
+import { SITE, FOUNDER_ABOUT, ABOUT_CONDENSED } from "@/lib/site-config";
 
 export const metadata = {
   title: "About Us | The Atinol Group",
@@ -32,22 +32,14 @@ export default function AboutPage() {
               Company Story
             </h2>
             <Card variant="glass" className="!p-6 sm:!p-8">
-              <p className="text-atinol-dark text-lg leading-relaxed mb-4">
-                <span className="font-semibold">Founded by {SITE.ceoName}</span>
-                —an experienced cloud security professional with hands-on
-                experience building Zero Trust, cloud security, and DevSecOps
-                programs for growing and established organizations.
+              <p className="text-atinol-dark leading-relaxed mb-4">
+                {ABOUT_CONDENSED[0]}
+              </p>
+              <p className="text-atinol-muted leading-relaxed mb-4">
+                {ABOUT_CONDENSED[1]}
               </p>
               <p className="text-atinol-muted leading-relaxed">
-                At T.A.G. Corp., we pride ourselves on providing top-notch
-                expertise and customized solutions to meet the unique needs of
-                each of our clients. Our comprehensive suite of services
-                includes IT consulting, secure architecturing, cybersecurity
-                risk assessments, vulnerability assessments, incident response,
-                and more. Whether you need help developing a cybersecurity
-                strategy, implementing secure networks, or responding to a
-                security incident, we have the expertise and experience to help
-                you achieve your goals.
+                {ABOUT_CONDENSED[2]}
               </p>
             </Card>
           </div>
@@ -84,11 +76,7 @@ export default function AboutPage() {
             {/* Main message */}
             <div className="md:col-span-3">
               <p className="text-slate-200 leading-relaxed text-lg">
-                Clients work directly with experienced leadership, ensuring
-                practical guidance, clear communication, and solutions designed
-                to scale. When you partner with T.A.G. Corp, you are in capable
-                hands and know your security strategy is guided by proven
-                experience.
+                {FOUNDER_ABOUT}
               </p>
             </div>
             {/* Leadership + CTA card */}

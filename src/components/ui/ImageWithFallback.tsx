@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Loader } from "@/components/ui/Loader";
 
 type ImageWithFallbackProps = {
   src: string;
@@ -20,6 +21,7 @@ export function ImageWithFallback({
   fallbackClassName = "bg-gradient-to-br from-atinol-blue/20 via-atinol-teal/15 to-atinol-green/20",
 }: ImageWithFallbackProps) {
   const [failed, setFailed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   if (failed) {
     return (
@@ -36,12 +38,20 @@ export function ImageWithFallback({
   }
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      className={fill ? "absolute inset-0 w-full h-full object-cover" : className}
-      sizes={sizes}
-      onError={() => setFailed(true)}
-    />
+    <>
+      {!loaded && fill && (
+        <div className="absolute inset-0 flex items-center justify-center bg-atinol-dark/5 z-[1]">
+          <Loader size="md" />
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={fill ? "absolute inset-0 w-full h-full object-cover" : className}
+        sizes={sizes}
+        onLoad={() => setLoaded(true)}
+        onError={() => setFailed(true)}
+      />
+    </>
   );
 }

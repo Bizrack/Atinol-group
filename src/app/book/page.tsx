@@ -1,7 +1,8 @@
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Card } from "@/components/ui/Card";
-import { SITE } from "@/lib/site-config";
+import { CalendarEmbed } from "@/components/booking/CalendarEmbed";
+import { SITE, SERVICES } from "@/lib/site-config";
 
 export const metadata = {
   title: "Book a Consultation | The Atinol Group",
@@ -9,17 +10,40 @@ export const metadata = {
     "Schedule a consultation with T.A.G. Corp. Name, email, phone (optional), and a short service request description.",
 };
 
-export default function BookPage() {
+type BookPageProps = {
+  searchParams: Promise<{ service?: string }> | { service?: string };
+};
+
+function getServiceBySlug(slug: string | undefined) {
+  if (!slug) return null;
+  return SERVICES.find((s) => s.slug === slug) ?? null;
+}
+
+export default async function BookPage(props: BookPageProps) {
+  const searchParams = await Promise.resolve(props.searchParams);
+  const serviceSlug = typeof searchParams.service === "string" ? searchParams.service : undefined;
+  const service = getServiceBySlug(serviceSlug);
+
+  const pageTitle = service
+    ? `Get a quote: ${service.name}`
+    : "Book a Consultation";
+  const pageDescription = service
+    ? `You're requesting a quote for ${service.name}. Share your contact details and a short description of your needs—we'll get back to you to schedule a call or meeting.`
+    : "Tell us about your needs. We'll get back to you to schedule a call or meeting.";
+  const formIntro = service
+    ? `Request a quote for ${service.name}. Share your contact details and a short description of what you need.`
+    : "Share your contact details and a short description. We need: name, email, phone (optional), and what you're looking for.";
+  const formHeading = service ? `Request quote: ${service.name}` : "Send a request";
+
   return (
     <>
       <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Book a Consultation
+            {pageTitle}
           </h1>
           <p className="text-slate-300 text-lg">
-            Tell us about your needs. We&apos;ll get back to you to schedule a
-            call or meeting.
+            {pageDescription}
           </p>
         </div>
       </section>
@@ -27,17 +51,16 @@ export default function BookPage() {
       <Section variant="glass">
         <div className="max-w-4xl mx-auto">
           <p className="text-atinol-muted text-center text-lg mb-8 md:mb-10">
-            Share your contact details and a short description. We need: name,
-            email, phone (optional), and what you&apos;re looking for.
+            {formIntro}
           </p>
 
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
             {/* Send request — form */}
             <div className="lg:col-span-3">
               <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
-                Send a request
+                {formHeading}
               </h2>
-              <ContactForm autoFocus />
+              <ContactForm autoFocus formType="booking" />
             </div>
 
             {/* Or schedule directly — card */}
@@ -65,15 +88,28 @@ export default function BookPage() {
                     {SITE.email}
                   </a>
                 </p>
-                {SITE.calendarUrl === "#" && (
-                  <p className="text-xs text-atinol-muted mt-4 pt-4 border-t border-white/20">
-                    Set <code className="bg-white/50 px-1 rounded">calendarUrl</code> in{" "}
-                    <code className="bg-white/50 px-1 rounded">site-config.ts</code> for Calendly or Cal.com.
-                  </p>
-                )}
               </Card>
             </div>
           </div>
+
+          {SITE.calendarUrl && (SITE.calendarUrl as string) !== "#" && (
+            <div className="mt-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6 text-center">
+                Or pick a time below
+              </h2>
+              <CalendarEmbed calendarUrl={SITE.calendarUrl} />
+              <p className="text-center text-atinol-muted text-sm mt-4">
+                <a
+                  href={SITE.calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-atinol-teal font-medium hover:underline"
+                >
+                  Open calendar in new tab →
+                </a>
+              </p>
+            </div>
+          )}
         </div>
       </Section>
     </>

@@ -5,13 +5,24 @@ export const SITE = {
   email: "tagcorp@theatinolgroup.com",
   /** Optional; leave empty to hide phone. Use for click-to-call on mobile (e.g. "+1 234 567 8900"). */
   phone: "",
-  domain: "https://theatinolgroup.com",
+  domain: "https://theatinolgroup.com/",
   linkedInCompany: "https://www.linkedin.com/company/91166117",
   linkedInCEO: "https://www.linkedin.com/in/ayo-asekun",
   ceoName: "Ayo Asekun",
-  /** Replace with your Calendly/Cal.com URL for Book page calendar option */
-  calendarUrl: "#",
+  /** Calendly (or Cal.com) URL for Book page – embed and link */
+  calendarUrl: "https://calendly.com/mayowasamuel86/tag-consultation",
 } as const;
+
+/** Condensed “about” from client brief (About & Services). */
+export const ABOUT_CONDENSED = [
+  "At T.A.G. Corp., we pride ourselves on providing top-notch expertise and customized solutions to meet the unique needs of each of our clients.",
+  "Our comprehensive suite of services includes IT consulting, secure architecturing, cybersecurity risk assessments, vulnerability assessments, incident response, and more. Whether you need help developing a cybersecurity strategy, implementing secure networks, or responding to a security incident, we have the expertise and experience to help you achieve your goals.",
+  "At our company, we believe that cybersecurity is not just a compliance requirement, but an ongoing process that requires constant attention and monitoring. That's why we offer proactive monitoring and management services to help our clients stay ahead of the curve and keep their business safe from cyber threats.",
+] as const;
+
+/** About the Founder (client brief). */
+export const FOUNDER_ABOUT =
+  "Founded by Ayo Asekun, an experienced cloud security professional, with hands-on experience building Zero Trust, cloud security, and DevSecOps programs for growing &/or established organizations. Clients work directly with experienced leadership, ensuring practical guidance, clear communication, and solutions designed to scale. When you partner with T.A.G. Corp, you are in capable hands & know your security strategy is guided by proven experience.";
 
 /** Use for tel: links so mobile devices can dial (strips spaces, keeps + and digits). */
 export function getTelHref(phone: string): string {

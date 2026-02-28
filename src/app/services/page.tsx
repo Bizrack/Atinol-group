@@ -121,7 +121,7 @@ export default function ServicesPage() {
                         {detail.price ?? "Custom quote"}
                       </td>
                       <td className="py-4 px-4 sm:px-6 text-center">
-                        <Button href="/book" className="text-sm py-2">
+                        <Button href={`/book?service=${service.slug}`} className="text-sm py-2">
                           Get quote
                         </Button>
                       </td>
@@ -155,7 +155,7 @@ export default function ServicesPage() {
                   </div>
                   <p className="text-atinol-muted text-sm mb-2">{detail.description}</p>
                   <p className="text-atinol-muted text-xs mb-4">{detail.whoFor}</p>
-                  <Button href="/book" className="w-full sm:w-auto">
+                  <Button href={`/book?service=${service.slug}`} className="w-full sm:w-auto">
                     Get quote
                   </Button>
                 </div>

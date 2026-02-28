@@ -1,0 +1,17 @@
+{
+  "name": "The Atinol Group Corp (T.A.G. Corp)",
+  "short_name": "TAG",
+  "description": "Safeguarding Your Assets in a Cyber World. IT consulting, cybersecurity, and secure architecture.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e3a5f",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

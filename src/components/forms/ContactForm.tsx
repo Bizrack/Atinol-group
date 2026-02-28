@@ -1,16 +1,20 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/Button";
+import { sendFormEmail, isEmailJsConfigured, type FormType } from "@/lib/emailjs";
 
 type ContactFormProps = {
   onSuccess?: () => void;
   className?: string;
   /** When true, focus the first input on mount (e.g. when user landed from a CTA). */
   autoFocus?: boolean;
+  /** "booking" = Book Consultation form (template_2n20upv), "contact" = Contact Us form (template_se1t35o) */
+  formType?: FormType;
 };
 
-export function ContactForm({ onSuccess, className = "", autoFocus = false }: ContactFormProps) {
+export function ContactForm({ onSuccess, className = "", autoFocus = false, formType = "contact" }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle"
   );
@@ -29,25 +33,38 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false }: Co
     setStatus("sending");
     const form = e.currentTarget;
     const data = new FormData(form);
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: data.get("phone") ? String(data.get("phone")) : undefined,
+      message: String(data.get("message") ?? ""),
+    };
 
+    const loadingToastId = toast.loading("Sending…");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone") || undefined,
-          message: data.get("message"),
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-      if (res.ok) {
-        setStatus("done");
-        form.reset();
-        onSuccess?.();
-      } else setStatus("error");
+      if (isEmailJsConfigured()) {
+        await sendFormEmail(formType, payload);
+      } else {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json" },
+        });
+        if (!res.ok) throw new Error("API error");
+      }
+      toast.dismiss(loadingToastId);
+      setStatus("done");
+      form.reset();
+      const message =
+        formType === "booking"
+          ? "Request sent. We'll be in touch soon to schedule."
+          : "Message sent. We'll be in touch soon.";
+      toast.success(message);
+      onSuccess?.();
     } catch {
+      toast.dismiss(loadingToastId);
       setStatus("error");
+      toast.error("Something went wrong. Please try again or email us directly.");
     }
   }
 
@@ -112,12 +129,6 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false }: Co
           placeholder="How can we help?"
         />
       </div>
-      {status === "done" && (
-        <p className="text-atinol-green text-sm">Message sent. We&apos;ll be in touch soon.</p>
-      )}
-      {status === "error" && (
-        <p className="text-red-600 text-sm">Something went wrong. Please try again or email us directly.</p>
-      )}
       <Button type="submit" disabled={status === "sending"} className="w-full">
         {status === "sending" ? "Sending…" : "Send"}
       </Button>

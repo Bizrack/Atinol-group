@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Loader } from "@/components/ui/Loader";
 import { HERO_FOCUS_ITEMS } from "@/lib/site-config";
 
 const HERO_SLIDES = [
@@ -62,6 +63,7 @@ function HeroSlide({
   fallbackGradient: string;
 }) {
   const [failed, setFailed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div
@@ -71,12 +73,20 @@ function HeroSlide({
       style={{ background: failed ? fallbackGradient : undefined }}
     >
       {!failed && (
-        <img
-          src={src}
-          alt={alt}
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={() => setFailed(true)}
-        />
+        <>
+          {!loaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-atinol-dark/80 z-[1]">
+              <Loader size="lg" variant="light" />
+            </div>
+          )}
+          <img
+            src={src}
+            alt={alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            onLoad={() => setLoaded(true)}
+            onError={() => setFailed(true)}
+          />
+        </>
       )}
     </div>
   );
@@ -145,17 +155,10 @@ export function Hero() {
           >
             <Button
               href="/book"
-              variant="primary"
-              className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl"
-            >
-              Get Started
-            </Button>
-            <Button
-              href="/contact"
               variant="outline"
               className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl border-2 border-white/60 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15"
             >
-              Contact Us
+              Get Started 
             </Button>
           </div>
         </div>

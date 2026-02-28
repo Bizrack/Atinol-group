@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE } from "@/lib/site-config";
+
+const LOGO_SRC = "/Assets/logotag.png";
 
 type LogoProps = {
   className?: string;
@@ -7,35 +10,36 @@ type LogoProps = {
   variant?: "default" | "light" | "header";
 };
 
+/** TAG logo for The Atinol Group Corp – used in header and footer. */
 export function Logo({
   className = "",
   showTagline = false,
   variant = "default",
 }: LogoProps) {
-  const isLight = variant === "light" || variant === "header";
-  const gradient = isLight
-    ? "from-slate-200 via-atinol-teal-light to-atinol-green-light"
-    : "from-atinol-blue via-atinol-teal to-atinol-green";
-  const groupGradient = isLight
-    ? "from-atinol-teal-light to-atinol-green-light"
-    : "from-atinol-teal to-atinol-green";
+  const isHeader = variant === "header";
+  const heightClass = isHeader ? "h-9" : "h-12";
+  const widthClass = isHeader ? "w-[100px]" : "w-[140px]";
 
   return (
-    <Link href="/" className={`inline-block ${className}`}>
-      <span className="block text-xl md:text-2xl font-bold tracking-tight">
-        <span
-          className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
-        >
-          THE ATINOL
-        </span>{" "}
-        <span
-          className={`bg-gradient-to-r ${groupGradient} bg-clip-text text-transparent`}
-        >
-          GROUP
-        </span>
+    <Link
+      href="/"
+      className={`inline-flex flex-col items-start ${className}`}
+      aria-label={`${SITE.name} – Home`}
+    >
+      <span
+        className={`relative block shrink-0 ${heightClass} ${widthClass}`}
+      >
+        <Image
+          src={LOGO_SRC}
+          alt={SITE.name}
+          fill
+          className="object-contain object-left"
+          priority={isHeader}
+          sizes={isHeader ? "100px" : "140px"}
+        />
       </span>
       {showTagline && (
-        <span className="block text-xs md:text-sm text-atinol-muted mt-0.5">
+        <span className="block text-xs md:text-sm text-slate-400 mt-0.5 max-w-[220px]">
           {SITE.tagline}
         </span>
       )}
