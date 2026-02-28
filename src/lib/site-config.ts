@@ -3,7 +3,7 @@ export const SITE = {
   legalName: "The Atinol Group Corp (T.A.G. Corp)",
   tagline: "Safeguarding Your Assets in a Cyber World",
   email: "tagcorp@theatinolgroup.com",
-  /** Optional; leave empty to hide phone on contact page */
+  /** Optional; leave empty to hide phone. Use for click-to-call on mobile (e.g. "+1 234 567 8900"). */
   phone: "",
   domain: "https://theatinolgroup.com",
   linkedInCompany: "https://www.linkedin.com/company/91166117",
@@ -13,11 +13,15 @@ export const SITE = {
   calendarUrl: "#",
 } as const;
 
+/** Use for tel: links so mobile devices can dial (strips spaces, keeps + and digits). */
+export function getTelHref(phone: string): string {
+  const tel = phone.replace(/[\s\-().]/g, "").replace(/^0+/, "");
+  return `tel:${tel}`;
+}
+
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/book", label: "Book Consultation" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

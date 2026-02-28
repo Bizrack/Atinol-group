@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { Card } from "@/components/ui/Card";
 import { SITE } from "@/lib/site-config";
 
 export const metadata = {
@@ -24,54 +25,57 @@ export default function BookPage() {
       </section>
 
       <Section variant="glass">
-        <div className="max-w-xl mx-auto">
-          <p className="text-atinol-muted text-center mb-8">
-            Only contact info—no CC or address. We need: name, email, phone
-            (optional), and a short service request description.
+        <div className="max-w-4xl mx-auto">
+          <p className="text-atinol-muted text-center text-lg mb-8 md:mb-10">
+            Share your contact details and a short description. We need: name,
+            email, phone (optional), and what you&apos;re looking for.
           </p>
-          <ContactForm />
+
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+            {/* Send request — form */}
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
+                Send a request
+              </h2>
+              <ContactForm autoFocus />
+            </div>
+
+            {/* Or schedule directly — card */}
+            <div className="lg:col-span-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
+                Or schedule directly
+              </h2>
+              <Card variant="glass" className="border-l-4 border-l-atinol-teal">
+                <p className="text-atinol-muted text-sm mb-6">
+                  Prefer to pick a time? Open our calendar to book a slot, or
+                  email us to arrange a call.
+                </p>
+                <a
+                  href={SITE.calendarUrl}
+                  className="inline-flex items-center justify-center w-full rounded-xl px-4 py-3 font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 transition-colors mb-4"
+                >
+                  Open calendar to book →
+                </a>
+                <p className="text-atinol-muted text-sm">
+                  Or email:{" "}
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="text-atinol-teal font-medium hover:underline"
+                  >
+                    {SITE.email}
+                  </a>
+                </p>
+                {SITE.calendarUrl === "#" && (
+                  <p className="text-xs text-atinol-muted mt-4 pt-4 border-t border-white/20">
+                    Set <code className="bg-white/50 px-1 rounded">calendarUrl</code> in{" "}
+                    <code className="bg-white/50 px-1 rounded">site-config.ts</code> for Calendly or Cal.com.
+                  </p>
+                )}
+              </Card>
+            </div>
+          </div>
         </div>
       </Section>
-
-      <Section title="Or schedule directly" id="calendar">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-atinol-muted mb-6">
-            Prefer to pick a time? Use the link below to open our calendar and
-            book a slot. You can also email us at{" "}
-            <a
-              href={`mailto:${SITE.email}`}
-              className="text-atinol-teal font-medium hover:underline"
-            >
-              {SITE.email}
-            </a>
-            .
-          </p>
-          <a
-            href={SITE.calendarUrl}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 transition-colors"
-          >
-            Open calendar to book →
-          </a>
-          {SITE.calendarUrl === "#" && (
-            <p className="text-sm text-atinol-muted mt-4">
-              Set <code className="text-xs bg-slate-200 px-1 rounded">calendarUrl</code> in{" "}
-              <code className="text-xs bg-slate-200 px-1 rounded">src/lib/site-config.ts</code> for Calendly or Cal.com.
-            </p>
-          )}
-        </div>
-      </Section>
-
-      <section className="py-12 px-4 bg-white/40 backdrop-blur-md border-y border-white/20 text-center">
-        <p className="text-atinol-muted text-sm mb-2">
-          Prefer to reach out directly?
-        </p>
-        <a
-          href={`mailto:${SITE.email}`}
-          className="text-atinol-teal font-medium hover:underline"
-        >
-          {SITE.email}
-        </a>
-      </section>
     </>
   );
 }

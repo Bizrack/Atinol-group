@@ -20,18 +20,18 @@ export function Header() {
               <Link
                 key={href}
                 href={href}
-                className="rounded-lg px-3 py-2 text-slate-200 font-medium hover:bg-white/10 hover:text-white transition-colors duration-200"
+                className="rounded-lg px-3 py-2 text-slate-200 font-medium hover:bg-white/10 hover:text-white hover:scale-105 transition-all duration-300 ease-out"
               >
                 {label}
               </Link>
             ))}
-            <Button href="/book" variant="glass" className="ml-2">
+            <Button href="/book" variant="glass" className="ml-2 !bg-slate-800/80 hover:!bg-slate-700/90 !border-white/25">
               Book Consultation
             </Button>
           </nav>
 
           <div className="md:hidden flex items-center gap-2">
-            <Button href="/book" variant="glass" className="text-sm py-2">
+            <Button href="/book" variant="glass" className="text-sm py-2 !bg-slate-800/80 hover:!bg-slate-700/90 !border-white/25">
               Book
             </Button>
             <button

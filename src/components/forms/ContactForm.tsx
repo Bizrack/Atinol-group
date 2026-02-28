@@ -1,17 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 
 type ContactFormProps = {
   onSuccess?: () => void;
   className?: string;
+  /** When true, focus the first input on mount (e.g. when user landed from a CTA). */
+  autoFocus?: boolean;
 };
 
-export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
+export function ContactForm({ onSuccess, className = "", autoFocus = false }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle"
   );
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!autoFocus || !firstInputRef.current) return;
+    const t = requestAnimationFrame(() => {
+      firstInputRef.current?.focus();
+    });
+    return () => cancelAnimationFrame(t);
+  }, [autoFocus]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +53,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
 
   return (
     <div
-      className={`rounded-xl border border-white/25 bg-white/70 backdrop-blur-md shadow-lg p-6 sm:p-8 ${className}`}
+      className={`rounded-xl border border-white/25 bg-white/70 backdrop-blur-md shadow-lg p-6 sm:p-8 transition-all duration-300 ease-out hover:shadow-xl hover:border-atinol-teal/30 ${className}`}
     >
     <form
       onSubmit={handleSubmit}
@@ -53,10 +64,12 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
           Name *
         </label>
         <input
+          ref={firstInputRef}
           id="name"
           name="name"
           type="text"
           required
+          autoComplete="name"
           className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="Your name"
         />
@@ -105,7 +118,7 @@ export function ContactForm({ onSuccess, className = "" }: ContactFormProps) {
       {status === "error" && (
         <p className="text-red-600 text-sm">Something went wrong. Please try again or email us directly.</p>
       )}
-      <Button type="submit" disabled={status === "sending"}>
+      <Button type="submit" disabled={status === "sending"} className="w-full">
         {status === "sending" ? "Sending…" : "Send"}
       </Button>
     </form>

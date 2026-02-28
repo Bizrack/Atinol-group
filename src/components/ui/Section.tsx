@@ -34,9 +34,9 @@ export function Section({
   return (
     <section
       id={id}
-      className={`py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 ${variantStyles[variant]} ${className}`}
+      className={`py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${variantStyles[variant]} ${className}`}
     >
-      <div className="max-w-6xl mx-auto animate-fade-in-up">
+      <div className="max-w-6xl mx-auto animate-fade-in-up [animation-duration:0.6s]">
         {(title || subtitle) && (
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
             {title && (

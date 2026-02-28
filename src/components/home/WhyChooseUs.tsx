@@ -19,7 +19,7 @@ export function WhyChooseUs() {
         {WHY_CHOOSE_US.map((item, i) => (
           <li
             key={i}
-            className="flex gap-4 p-5 sm:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300"
+            className="flex gap-4 p-5 sm:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 ease-out"
           >
             <span className="text-2xl sm:text-3xl shrink-0" aria-hidden>
               {icons[i]}

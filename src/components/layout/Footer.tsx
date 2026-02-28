@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-import { SITE, NAV_LINKS } from "@/lib/site-config";
+import { SITE, NAV_LINKS, getTelHref } from "@/lib/site-config";
 
 export function Footer() {
   return (
@@ -16,6 +16,14 @@ export function Footer() {
             >
               {SITE.email}
             </a>
+            {SITE.phone ? (
+              <a
+                href={getTelHref(SITE.phone)}
+                className="mt-2 inline-block text-atinol-teal-light hover:underline text-sm sm:text-base"
+              >
+                {SITE.phone}
+              </a>
+            ) : null}
           </div>
 
           <div>

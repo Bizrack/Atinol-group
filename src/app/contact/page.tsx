@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Card } from "@/components/ui/Card";
-import { SITE } from "@/lib/site-config";
+import { SITE, getTelHref } from "@/lib/site-config";
 
 export const metadata = {
   title: "Contact | The Atinol Group",
@@ -31,18 +32,18 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Send us a message — form card */}
             <div>
-              <h2 className="text-xl font-semibold text-atinol-dark mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
                 Send us a message
               </h2>
-              <ContactForm />
+              <ContactForm autoFocus />
             </div>
 
             {/* Reach us directly — compact card beside form */}
             <div>
-              <h2 className="text-xl font-semibold text-atinol-dark mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
                 Reach us directly
               </h2>
-              <Card variant="glass" className="p-5">
+              <Card variant="glass" className="p-5 border-l-4 border-l-atinol-teal">
                 <ul className="space-y-3 text-sm">
                   <li>
                     <span className="block font-medium text-atinol-muted mb-0.5">
@@ -61,7 +62,7 @@ export default function ContactPage() {
                         Phone
                       </span>
                       <a
-                        href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                        href={getTelHref(SITE.phone)}
                         className="text-atinol-teal font-medium hover:underline"
                       >
                         {SITE.phone}
@@ -85,6 +86,18 @@ export default function ContactPage() {
                 </ul>
               </Card>
             </div>
+          </div>
+
+          <div className="text-center pt-6 border-t border-white/20">
+            <p className="text-atinol-muted text-sm mb-2">
+              Need to schedule a call?
+            </p>
+            <Link
+              href="/book"
+              className="text-atinol-teal font-medium hover:underline"
+            >
+              Book a consultation →
+            </Link>
           </div>
         </div>
       </Section>

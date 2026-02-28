@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
 import { SITE } from "@/lib/site-config";
 
 export const metadata = {
@@ -20,29 +21,31 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <Section>
-        <div className="prose prose-slate max-w-2xl mx-auto">
-          <p className="text-atinol-muted leading-relaxed">
-            Terms &amp; conditions and privacy practices follow industry
-            standards applicable to professional IT and cybersecurity
-            consulting services.
-          </p>
-          <p className="text-atinol-muted leading-relaxed mt-4">
-            We collect only the information you provide when contacting us (e.g.
-            name, email, phone, and service request description). We use it
-            solely to respond to your inquiry and deliver our services. We do
-            not sell or share your information with third parties for marketing.
-          </p>
-          <p className="text-atinol-muted leading-relaxed mt-4">
-            For questions about this policy or your data, contact us at{" "}
-            <a
-              href={`mailto:${SITE.email}`}
-              className="text-atinol-teal hover:underline"
-            >
-              {SITE.email}
-            </a>
-            .
-          </p>
+      <Section variant="glass">
+        <div className="max-w-2xl mx-auto">
+          <Card variant="glass" className="border-l-4 border-l-atinol-teal">
+            <p className="text-atinol-muted leading-relaxed">
+              Terms &amp; conditions and privacy practices follow industry
+              standards applicable to professional IT and cybersecurity
+              consulting services.
+            </p>
+            <p className="text-atinol-muted leading-relaxed mt-4">
+              We collect only the information you provide when contacting us (e.g.
+              name, email, phone, and service request description). We use it
+              solely to respond to your inquiry and deliver our services. We do
+              not sell or share your information with third parties for marketing.
+            </p>
+            <p className="text-atinol-muted leading-relaxed mt-4">
+              For questions about this policy or your data, contact us at{" "}
+              <a
+                href={`mailto:${SITE.email}`}
+                className="text-atinol-teal font-medium hover:underline"
+              >
+                {SITE.email}
+              </a>
+              .
+            </p>
+          </Card>
         </div>
       </Section>
     </>
