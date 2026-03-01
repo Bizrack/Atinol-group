@@ -13,10 +13,10 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
+      <section className="mt-14 sm:mt-16 pt-8 pb-8 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-slate-300 text-lg">
+          <h1 className="text-2xl min-[375px]:text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Contact Us</h1>
+          <p className="text-slate-300 text-base sm:text-lg">
             Send us a message or reach us directly. We&apos;ll respond as soon as we can.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function ContactPage() {
             email or call us.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Send us a message — form card */}
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">

@@ -37,12 +37,12 @@ export default async function BookPage(props: BookPageProps) {
 
   return (
     <>
-      <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
+      <section className="mt-14 sm:mt-16 pt-8 pb-8 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-2xl min-[375px]:text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             {pageTitle}
           </h1>
-          <p className="text-slate-300 text-lg">
+          <p className="text-slate-300 text-base sm:text-lg">
             {pageDescription}
           </p>
         </div>
@@ -50,22 +50,22 @@ export default async function BookPage(props: BookPageProps) {
 
       <Section variant="glass">
         <div className="max-w-4xl mx-auto">
-          <p className="text-atinol-muted text-center text-lg mb-8 md:mb-10">
+          <p className="text-atinol-muted text-center text-base sm:text-lg mb-6 sm:mb-8 md:mb-10 px-1">
             {formIntro}
           </p>
 
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 items-start">
             {/* Send request — form */}
-            <div className="lg:col-span-3">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
+            <div className="lg:col-span-3 min-w-0">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient-brand mb-4 sm:mb-6">
                 {formHeading}
               </h2>
               <ContactForm autoFocus formType="booking" />
             </div>
 
             {/* Or schedule directly — card */}
-            <div className="lg:col-span-2">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6">
+            <div className="lg:col-span-2 min-w-0">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient-brand mb-4 sm:mb-6">
                 Or schedule directly
               </h2>
               <Card variant="glass" className="border-l-4 border-l-atinol-teal">
@@ -75,7 +75,7 @@ export default async function BookPage(props: BookPageProps) {
                 </p>
                 <a
                   href={SITE.calendarUrl}
-                  className="inline-flex items-center justify-center w-full rounded-xl px-4 py-3 font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 transition-colors mb-4"
+                  className="inline-flex items-center justify-center w-full rounded-xl px-4 py-3.5 min-h-[48px] font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 active:bg-atinol-teal/15 transition-colors mb-4 touch-manipulation"
                 >
                   Open calendar to book →
                 </a>

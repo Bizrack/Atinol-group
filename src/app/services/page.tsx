@@ -60,10 +60,10 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="mt-16 pt-10 pb-10 sm:pt-12 sm:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
+      <section className="mt-14 sm:mt-16 pt-8 pb-8 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
-          <p className="text-slate-300 text-lg">
+          <h1 className="text-2xl min-[375px]:text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Our Services</h1>
+          <p className="text-slate-300 text-base sm:text-lg">
             Comprehensive cybersecurity and IT solutions tailored to your
             organization.
           </p>
@@ -145,7 +145,7 @@ export default function ServicesPage() {
                 <div
                   key={service.id}
                   id={service.slug}
-                  className="scroll-mt-24 p-4 sm:p-6 hover:bg-white/5 transition-colors"
+                  className="scroll-mt-20 sm:scroll-mt-24 p-4 sm:p-6 hover:bg-white/5 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <h3 className="font-semibold text-atinol-dark">{service.name}</h3>
@@ -155,7 +155,7 @@ export default function ServicesPage() {
                   </div>
                   <p className="text-atinol-muted text-sm mb-2">{detail.description}</p>
                   <p className="text-atinol-muted text-xs mb-4">{detail.whoFor}</p>
-                  <Button href={`/book?service=${service.slug}`} className="w-full sm:w-auto">
+                  <Button href={`/book?service=${service.slug}`} className="w-full sm:w-auto min-h-[48px]">
                     Get quote
                   </Button>
                 </div>

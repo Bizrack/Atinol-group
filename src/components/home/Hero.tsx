@@ -107,7 +107,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen h-screen w-full flex max-md:items-start md:items-center justify-center overflow-hidden">
       {/* Background images */}
       <div className="absolute inset-0 z-0 bg-atinol-dark bg-gradient-to-br from-atinol-blue/80 via-atinol-dark/90 to-atinol-teal/60">
         {HERO_SLIDES.map((slide, i) => (
@@ -126,12 +126,12 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Content: Blackoak-style two-column layout */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-16">
-        {/* Left: badge, headline, paragraph, CTAs */}
-        <div className="flex-1 max-w-2xl">
+      {/* Content: mobile = changing text only; desktop = two columns (changing text + Focus Areas) */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-24 md:pt-16 pb-16 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 sm:gap-10 lg:gap-16">
+        {/* Left: badge, headline, description, CTA — shown on all screens */}
+        <div className="flex flex-col flex-1 max-w-2xl min-w-0">
           <div
-            className="inline-flex items-center rounded-full border border-atinol-teal/60 bg-black/30 backdrop-blur-sm px-4 py-1.5 text-sm text-white mb-6 opacity-0 [animation-fill-mode:forwards]"
+            className="inline-flex flex-wrap items-center rounded-full border border-atinol-teal/60 bg-black/30 backdrop-blur-sm px-3 py-1.5 text-xs sm:text-sm text-white mb-3 sm:mb-6 opacity-0 [animation-fill-mode:forwards]"
             style={{
               animation: "fade-in-up 0.6s ease-out forwards, breathe 4s ease-in-out 0.6s infinite",
             }}
@@ -140,48 +140,48 @@ export function Hero() {
           </div>
           <div
             key={index}
-            className="animate-fade-in [animation-duration:0.5s] [animation-fill-mode:both]"
+            className="animate-fade-in [animation-duration:0.5s] [animation-fill-mode:both] min-w-0 mt-4 md:mt-0"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+            <h1 className="text-xl min-[360px]:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-3 sm:mb-5 break-words">
               {HERO_SLIDES[index].headline}
             </h1>
-            <p className="text-slate-200 text-base sm:text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
+            <p className="text-slate-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mb-5 sm:mb-8 leading-relaxed break-words">
               {HERO_SLIDES[index].description}
             </p>
           </div>
           <div
-            className="flex flex-wrap gap-3 sm:gap-4 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s]"
+            className="flex flex-wrap gap-3 sm:gap-4 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s] mt-16 sm:mt-0"
             style={{ animationDelay: "280ms" }}
           >
             <Button
               href="/book"
               variant="outline"
-              className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl border-2 border-white/60 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15"
+              className="text-sm sm:text-base md:text-lg min-h-[48px] px-5 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl border-2 border-white/60 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15 w-full sm:w-auto"
             >
-              Get Started 
+              Get Started
             </Button>
           </div>
         </div>
 
-        {/* Right: Focus Areas (glass cards) */}
-        <div className="flex-shrink-0 w-full lg:max-w-md">
+        {/* Focus Areas: hidden on mobile; right column on desktop */}
+        <div className="hidden lg:block flex-shrink-0 w-full max-w-md min-w-0">
           <div
-            className="flex items-center gap-3 mb-4 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s]"
+            className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3 sm:mb-4 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s]"
             style={{ animationDelay: "200ms" }}
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-atinol-teal/90 text-white font-bold text-lg shadow-lg animate-breathe">
-              {HERO_FOCUS_ITEMS.length}
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-white">Our Focus Areas</h2>
-              <p className="text-sm text-slate-300">Building secure digital infrastructure</p>
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="flex h-8 w-8 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full bg-atinol-teal/90 text-white font-bold text-sm sm:text-lg shadow-lg animate-breathe" aria-hidden>
+                {HERO_FOCUS_ITEMS.length}
+              </span>
+              <h2 className="text-base sm:text-xl font-semibold text-white">Our Focus Areas</h2>
             </div>
+            <p className="text-xs sm:text-sm text-slate-300 sm:ml-14">Building secure digital infrastructure</p>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {HERO_FOCUS_ITEMS.map((item, i) => (
               <div
                 key={item.title}
-                className="rounded-xl border border-white/20 bg-white/10 backdrop-blur-md p-4 hover:bg-white/15 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 ease-out opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.5s]"
+                className="rounded-xl border border-white/20 bg-white/10 backdrop-blur-md p-3 sm:p-4 hover:bg-white/15 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 ease-out opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.5s] active:scale-[0.99] touch-manipulation"
                 style={{ animationDelay: `${360 + i * 70}ms` }}
               >
                 <div className="flex gap-4 items-start">
@@ -198,7 +198,7 @@ export function Hero() {
           </div>
           <Link
             href="/services"
-            className="mt-4 inline-flex items-center gap-2 text-atinol-teal-light font-medium hover:underline text-sm"
+            className="mt-3 sm:mt-4 inline-flex items-center gap-2 text-atinol-teal-light font-medium hover:underline text-sm min-h-[44px] items-center touch-manipulation"
           >
             View all services
             <span aria-hidden>→</span>
@@ -206,21 +206,21 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Carousel dots */}
+      {/* Carousel dots - small on mobile, standard from sm up */}
       <div
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s]"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2 opacity-0 animate-fade-in-up [animation-fill-mode:forwards] [animation-duration:0.6s]"
         style={{ animationDelay: "500ms" }}
       >
         {HERO_SLIDES.map((_, i) => (
           <button
             key={i}
             type="button"
-            aria-label={`Slide ${i + 1}`}
+            aria-label={`Go to slide ${i + 1}`}
             onClick={() => setIndex(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`rounded-full transition-all duration-300 touch-manipulation flex items-center justify-center ${
               i === index
-                ? "w-8 bg-white animate-breathe"
-                : "w-2 bg-white/50 hover:bg-white/70 hover:scale-110"
+                ? "h-1.5 w-5 sm:h-2 sm:w-8 bg-white animate-breathe"
+                : "h-1.5 w-1.5 sm:h-2 sm:w-2 bg-white/50 hover:bg-white/70 active:bg-white/80"
             }`}
           />
         ))}

@@ -34,14 +34,14 @@ export function Section({
   return (
     <section
       id={id}
-      className={`py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${variantStyles[variant]} ${className}`}
+      className={`py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${variantStyles[variant]} ${className}`}
     >
       <div className="max-w-6xl mx-auto animate-fade-in-up [animation-duration:0.6s]">
         {(title || subtitle) && (
-          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+          <div className="text-center mb-5 sm:mb-8 md:mb-10">
             {title && (
               <h2
-                className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 ${
+                className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 ${
                   variant === "dark-blue" || variant === "glass-dark"
                     ? "text-white"
                     : "text-gradient-brand"

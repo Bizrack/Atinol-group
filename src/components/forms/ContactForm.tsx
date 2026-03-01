@@ -70,7 +70,7 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false, form
 
   return (
     <div
-      className={`rounded-xl border border-white/25 bg-white/70 backdrop-blur-md shadow-lg p-6 sm:p-8 transition-all duration-300 ease-out hover:shadow-xl hover:border-atinol-teal/30 ${className}`}
+      className={`rounded-xl border border-white/25 bg-white/70 backdrop-blur-md shadow-lg p-4 sm:p-6 md:p-8 transition-all duration-300 ease-out hover:shadow-xl hover:border-atinol-teal/30 ${className}`}
     >
     <form
       onSubmit={handleSubmit}
@@ -87,7 +87,7 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false, form
           type="text"
           required
           autoComplete="name"
-          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3.5 min-h-[48px] text-base focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="Your name"
         />
       </div>
@@ -100,7 +100,7 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false, form
           name="email"
           type="email"
           required
-          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3.5 min-h-[48px] text-base focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="your@email.com"
         />
       </div>
@@ -112,7 +112,7 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false, form
           id="phone"
           name="phone"
           type="tel"
-          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3.5 min-h-[48px] text-base focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none transition-all placeholder:text-slate-500"
           placeholder="+1 (555) 000-0000"
         />
       </div>
@@ -125,7 +125,7 @@ export function ContactForm({ onSuccess, className = "", autoFocus = false, form
           name="message"
           required
           rows={4}
-          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3 focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none resize-none transition-all placeholder:text-slate-500"
+          className="w-full rounded-xl border border-slate-300 bg-white text-slate-900 shadow-sm px-4 py-3.5 min-h-[120px] text-base focus:border-atinol-teal focus:ring-2 focus:ring-atinol-teal/30 outline-none resize-none transition-all placeholder:text-slate-500"
           placeholder="How can we help?"
         />
       </div>

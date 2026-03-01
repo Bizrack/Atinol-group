@@ -17,13 +17,15 @@ export function Logo({
   variant = "default",
 }: LogoProps) {
   const isHeader = variant === "header";
+  const isLight = variant === "light";
   const heightClass = isHeader ? "h-9" : "h-12";
   const widthClass = isHeader ? "w-[100px]" : "w-[140px]";
+  const imageAlign = isLight ? "object-center" : "object-left";
 
   return (
     <Link
       href="/"
-      className={`inline-flex flex-col items-start ${className}`}
+      className={`inline-flex flex-col ${isLight ? "items-center" : "items-start"} ${className}`}
       aria-label={`${SITE.name} – Home`}
     >
       <span
@@ -33,7 +35,7 @@ export function Logo({
           src={LOGO_SRC}
           alt={SITE.name}
           fill
-          className="object-contain object-left"
+          className={`object-contain ${imageAlign}`}
           priority={isHeader}
           sizes={isHeader ? "100px" : "140px"}
         />

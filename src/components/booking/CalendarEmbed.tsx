@@ -28,7 +28,7 @@ export function CalendarEmbed({ calendarUrl, className = "" }: CalendarEmbedProp
   return (
     <div className={`relative ${className}`}>
       {loading && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 min-h-[500px] sm:min-h-[600px] bg-white/5 backdrop-blur-sm rounded-xl border border-white/20 z-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 min-h-[400px] sm:min-h-[500px] md:min-h-[600px] bg-white/5 backdrop-blur-sm rounded-xl border border-white/20 z-10">
           <Loader size="lg" />
           <p className="text-atinol-muted text-sm">Loading calendar…</p>
         </div>
@@ -38,7 +38,7 @@ export function CalendarEmbed({ calendarUrl, className = "" }: CalendarEmbedProp
         src={embedUrl}
         width="100%"
         height="700"
-        className="rounded-xl border border-white/20 w-full min-h-[600px] sm:min-h-[700px]"
+        className="rounded-xl border border-white/20 w-full min-h-[400px] sm:min-h-[550px] md:min-h-[650px] lg:min-h-[700px]"
         allowFullScreen
         onLoad={() => setLoading(false)}
       />

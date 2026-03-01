@@ -23,7 +23,7 @@ export function Card({
 }: CardProps) {
   return (
     <Component
-      className={`p-6 transition-all duration-300 ease-out ${cardVariants[variant]} ${className}`}
+      className={`p-4 sm:p-6 transition-all duration-300 ease-out ${cardVariants[variant]} ${className}`}
     >
       {children}
     </Component>
@@ -37,7 +37,7 @@ type CardTitleProps = {
 
 export function CardTitle({ children, as: Tag = "h3" }: CardTitleProps) {
   return (
-    <Tag className="text-lg font-semibold text-atinol-dark mb-2">
+    <Tag className="text-base sm:text-lg font-semibold text-atinol-dark mb-2">
       {children}
     </Tag>
   );
@@ -52,7 +52,7 @@ export function CardLink({ href, children }: CardLinkProps) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1 text-atinol-teal font-medium hover:underline hover:gap-2 rounded-lg px-2 py-1 -mx-2 -my-1 hover:bg-atinol-teal/10 hover:scale-105 transition-all duration-300 ease-out"
+      className="inline-flex items-center gap-1 text-atinol-teal font-medium hover:underline hover:gap-2 rounded-lg px-2 py-2 min-h-[44px] items-center -mx-2 -my-1 hover:bg-atinol-teal/10 hover:scale-105 transition-all duration-300 ease-out touch-manipulation"
     >
       {children}
       <span aria-hidden>→</span>

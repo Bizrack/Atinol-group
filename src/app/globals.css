@@ -10,8 +10,13 @@
   --atinol-warm: #f59e0b;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,6 +24,7 @@ body {
   background-attachment: fixed;
   color: #0f172a;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @keyframes breathe {
