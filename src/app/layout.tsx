@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageLoadToast } from "@/components/layout/PageLoadToast";
 import { Toaster } from "@/components/ui/Toaster";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { SITE } from "@/lib/site-config";
 
 const inter = Inter({
@@ -98,6 +99,7 @@ export default function RootLayout({
         <Footer />
         <PageLoadToast />
         <Toaster />
+        <ChatWidget />
       </body>
     </html>
   );
