@@ -237,7 +237,7 @@ export function ChatWidget() {
       {/* Chat box - compact floating on mobile, larger on desktop */}
       {open && (
         <div
-          className={`fixed z-[100] bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] w-[min(280px,calc(100vw-1.5rem))] max-w-[calc(100vw-1.5rem)] h-[min(320px,55dvh)] sm:w-[28rem] sm:max-w-[28rem] sm:h-[460px] rounded-2xl border border-white/20 bg-slate-900/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden touch-manipulation text-[11px] sm:text-[13px] [&_input]:text-[11px] sm:[&_input]:text-[13px] [&_button]:text-[11px] sm:[&_button]:text-[13px] [&_p]:text-[11px] sm:[&_p]:text-[13px] [&_span]:text-[11px] sm:[&_span]:text-[13px] ${
+          className={`fixed z-[100] bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] left-4 right-4 sm:left-auto sm:right-6 sm:w-[28rem] sm:max-w-[28rem] w-auto h-[min(320px,55dvh)] sm:h-[460px] rounded-2xl border border-white/20 bg-slate-900/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden touch-manipulation text-[11px] sm:text-[13px] [&_input]:text-[11px] sm:[&_input]:text-[13px] [&_button]:text-[11px] sm:[&_button]:text-[13px] [&_p]:text-[11px] sm:[&_p]:text-[13px] [&_span]:text-[11px] sm:[&_span]:text-[13px] ${
             minimized ? "h-12 opacity-90" : ""
           }`}
         >
