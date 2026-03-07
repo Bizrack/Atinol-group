@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { SITE } from "@/lib/site-config";
 import { sendFormEmail, isEmailJsConfigured } from "@/lib/emailjs";
 import toast from "react-hot-toast";
+import styles from "./ChatWidget.module.scss";
 
 type Message = {
   id: string;
@@ -234,21 +235,16 @@ export function ChatWidget() {
         </svg>
       </button>
 
-      {/* Chat box - compact floating on mobile, larger on desktop */}
+      {/* Chat box - SCSS for reliable mobile layout */}
       {open && (
-        <div
-          className={`fixed z-[100] bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] left-4 right-4 sm:left-auto sm:right-6 sm:w-[28rem] sm:max-w-[28rem] w-auto h-[min(320px,55dvh)] sm:h-[460px] rounded-2xl border border-white/20 bg-slate-900/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden touch-manipulation text-[11px] sm:text-[13px] [&_input]:text-[11px] sm:[&_input]:text-[13px] [&_button]:text-[11px] sm:[&_button]:text-[13px] [&_p]:text-[11px] sm:[&_p]:text-[13px] [&_span]:text-[11px] sm:[&_span]:text-[13px] ${
-            minimized ? "h-12 opacity-90" : ""
-          }`}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 bg-slate-800/50">
-            <span className="font-semibold text-white">Chat with {SITE.name}</span>
-            <div className="flex items-center gap-1">
+        <div className={`${styles.chatBox} ${minimized ? styles.minimized : ""}`}>
+          <div className={styles.header}>
+            <span className={styles.headerTitle}>Chat with {SITE.name}</span>
+            <div className={styles.headerActions}>
               <button
                 type="button"
                 onClick={() => setMinimized((m) => !m)}
-                className="p-2 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
+                className={styles.headerBtn}
                 aria-label={minimized ? "Expand chat" : "Minimize chat"}
               >
                 {minimized ? (
@@ -264,7 +260,7 @@ export function ChatWidget() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="p-2 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
+                className={styles.headerBtn}
                 aria-label="Close chat"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -276,27 +272,17 @@ export function ChatWidget() {
 
           {!minimized && (
             <>
-              {/* Messages - min-h-0 lets this shrink so input stays visible */}
-              <div className="flex-1 min-h-0 overflow-y-auto p-2 space-y-1.5">
+              <div className={styles.messages}>
                 {messages.map((m) => (
-                  <div
-                    key={m.id}
-                    className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`max-w-[85%] rounded-lg px-2 py-1.5 ${
-                        m.role === "user"
-                          ? "bg-atinol-teal text-white rounded-br-md"
-                          : "bg-white/10 text-slate-200 rounded-bl-md"
-                      }`}
-                    >
-                      <p className="leading-tight whitespace-pre-wrap">{m.text}</p>
+                  <div key={m.id} className={`${styles.messageRow} ${m.role === "user" ? styles.user : styles.bot}`}>
+                    <div className={`${styles.bubble} ${m.role === "user" ? styles.user : styles.bot}`}>
+                      <p className={styles.bubbleText}>{m.text}</p>
                       {m.role === "user" && (
-                        <span className="flex justify-end mt-1" aria-hidden>
+                        <span className={styles.checkRow} aria-hidden>
                           {m.status === "sending" ? (
-                            <span className="text-white/70">Sending…</span>
+                            <span className={styles.checkSending}>Sending…</span>
                           ) : (
-                            <svg className="w-3 h-3 text-white/90" viewBox="0 0 16 16" fill="currentColor">
+                            <svg className={styles.checkIcon} viewBox="0 0 16 16" fill="currentColor">
                               <path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z" />
                             </svg>
                           )}
@@ -306,12 +292,12 @@ export function ChatWidget() {
                   </div>
                 ))}
                 {isThinking && (
-                  <div className="flex justify-start">
-                    <div className="rounded-xl rounded-bl-md px-3 py-2 bg-white/10 text-slate-200">
-                      <span className="inline-flex gap-1.5" aria-label="Thinking">
-                        <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0ms]" />
-                        <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.15s]" />
-                        <span className="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.3s]" />
+                  <div className={styles.thinking}>
+                    <div className={`${styles.bubble} ${styles.bot}`}>
+                      <span className={styles.thinkingDots} aria-label="Thinking">
+                        <span />
+                        <span />
+                        <span />
                       </span>
                     </div>
                   </div>
@@ -319,22 +305,21 @@ export function ChatWidget() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input or Submit */}
-              <div className="p-2 border-t border-white/10 bg-slate-800/30">
+              <div className={styles.footer}>
                 {showSubmitButton && (
-                  <div className="mb-2">
+                  <div className={styles.submitBtnWrap}>
                     <button
                       type="button"
                       onClick={handleSubmitChat}
                       disabled={sending}
-                      className="w-full py-1 rounded-lg bg-atinol-teal text-white font-semibold hover:bg-atinol-teal/90 disabled:opacity-50 transition-colors"
+                      className={styles.submitBtn}
                     >
                       Submit chat
                     </button>
                   </div>
                 )}
                 {showInput && (
-                  <form onSubmit={handleSubmit} className="flex gap-1.5">
+                  <form onSubmit={handleSubmit} className={styles.form}>
                     <input
                       ref={inputRef}
                       type="text"
@@ -342,12 +327,12 @@ export function ChatWidget() {
                       onChange={(e) => setInput(e.target.value)}
                       placeholder={isThinking ? "..." : step === "more" ? "Type message or No..." : "Type here..."}
                       disabled={isThinking}
-                      className="flex-1 rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-atinol-teal disabled:opacity-60"
+                      className={styles.input}
                     />
                     <button
                       type="submit"
                       disabled={!input.trim() || isThinking}
-                      className="rounded-lg bg-atinol-teal px-2 py-1 text-white font-medium hover:bg-atinol-teal/90 disabled:opacity-50 transition-colors min-h-[36px]"
+                      className={styles.sendBtn}
                     >
                       Send
                     </button>
