@@ -74,16 +74,10 @@ function HeroSlide({
     >
       {!failed && (
         <>
-          {!loaded && (
-            <div className="absolute inset-0 flex items-center justify-center bg-atinol-dark/80 z-[1]">
-              <Loader size="lg" variant="light" />
-            </div>
-          )}
           <img
             src={src}
             alt={alt}
             className="absolute inset-0 w-full h-full object-cover"
-            onLoad={() => setLoaded(true)}
             onError={() => setFailed(true)}
           />
         </>

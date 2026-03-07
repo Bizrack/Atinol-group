@@ -92,10 +92,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased overflow-x-hidden`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">{children}</main>
         <Footer />
         <PageLoadToast />
         <Toaster />
