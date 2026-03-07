@@ -39,17 +39,17 @@ export function ImageWithFallback({
 
   return (
     <>
-      {!loaded && fill && (
+      {/* {!loaded && fill && (
         <div className="absolute inset-0 flex items-center justify-center bg-atinol-dark/5 z-[1]">
           <Loader size="md" />
         </div>
-      )}
+      )} */}
       <img
         src={src}
         alt={alt}
         className={fill ? "absolute inset-0 w-full h-full object-cover" : className}
         sizes={sizes}
-        onLoad={() => setLoaded(true)}
+        // onLoad={() => setLoaded(true)}
         onError={() => setFailed(true)}
       />
     </>

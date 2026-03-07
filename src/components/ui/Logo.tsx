@@ -20,12 +20,12 @@ export function Logo({
   const isLight = variant === "light";
   const heightClass = isHeader ? "h-9" : "h-12";
   const widthClass = isHeader ? "w-[100px]" : "w-[140px]";
-  const imageAlign = isLight ? "object-center" : "object-left";
+  const imageAlign = "object-left";
 
   return (
     <Link
       href="/"
-      className={`inline-flex flex-col ${isLight ? "items-center" : "items-start"} ${className}`}
+      className={`inline-flex flex-col items-start ${className}`}
       aria-label={`${SITE.name} – Home`}
     >
       <span
