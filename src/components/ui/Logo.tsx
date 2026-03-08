@@ -20,7 +20,7 @@ export function Logo({
   const isLight = variant === "light";
   const heightClass = isHeader ? "h-9" : "h-12";
   const widthClass = isHeader ? "w-[100px]" : "w-[140px]";
-  const imageAlign = "object-left";
+  const imageAlign = isLight ? "object-center" : "object-left";
 
   return (
     <Link

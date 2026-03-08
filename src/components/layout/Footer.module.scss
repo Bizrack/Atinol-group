@@ -1,0 +1,27 @@
+.logoWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    width: fit-content;
+    justify-content: flex-start;
+    align-self: flex-start;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+      display: inline-flex;
+      margin: 0 !important;
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+}

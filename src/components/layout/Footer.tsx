@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { SITE, NAV_LINKS, getTelHref } from "@/lib/site-config";
+import styles from "./Footer.module.scss";
 
 export function Footer() {
   return (
     <footer className="bg-slate-900/95 backdrop-blur-xl border-t border-white/10 text-slate-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start">
-            <div className="flex justify-center w-full md:w-auto md:justify-start">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left md:justify-self-start md:ml-0 w-full md:w-auto">
+            <div className={`${styles.logoWrap} md:items-start md:justify-start`}>
               <Logo variant="light" />
             </div>
             <p className="mt-3 text-sm sm:text-base text-slate-400">{SITE.tagline}</p>

@@ -2,12 +2,13 @@ $atinol-teal: #0d9488;
 
 .chatBox {
   position: fixed;
-  z-index: 100;
-  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
-  left: max(32px, env(safe-area-inset-left, 0px));
-  right: max(32px, env(safe-area-inset-right, 0px));
-  /* No width - fills space between left/right, avoids 100vw scrollbar issues */
-  height: min(320px, 55dvh);
+  z-index: 9999;
+  /* Mobile: lower position so it doesn't go up too much */
+  bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  left: auto;
+  right: max(8px, env(safe-area-inset-right, 0px));
+  width: min(320px, calc(100% - 24px));
+  height: min(360px, 50dvh);
   box-sizing: border-box;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -21,8 +22,10 @@ $atinol-teal: #0d9488;
   font-size: 11px;
 
   @media (min-width: 640px) {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
     left: auto;
     right: 24px;
+    transform: none;
     width: 20rem;
     max-width: 20rem;
     height: 460px;
@@ -172,7 +175,7 @@ $atinol-teal: #0d9488;
 }
 
 .footer {
-  padding: 8px 12px 8px 8px;
+  padding: 8px 28px 8px 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(30, 41, 59, 0.3);
 }
@@ -206,19 +209,24 @@ $atinol-teal: #0d9488;
 .form {
   display: flex;
   gap: 0.5rem;
-  margin-right: 6px;
+  min-width: 0;
 }
 
 .input {
-  flex: 0 0 80%;
+  flex: 1;
   min-width: 0;
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
   padding: 4px 8px;
   color: white;
-  font-size: inherit;
+  /* 16px prevents iOS Safari from auto-zooming when input is focused (avoids layout overflow) */
+  font-size: 16px;
   box-sizing: border-box;
+
+  @media (min-width: 640px) {
+    font-size: 13px;
+  }
 
   &::placeholder {
     color: #94a3b8;
@@ -235,9 +243,8 @@ $atinol-teal: #0d9488;
 }
 
 .sendBtn {
-  flex: 0 0 20%;
-  min-width: 4rem;
-  margin-right: 8px;
+  flex: 0 0 auto;
+  min-width: 3.5rem;
   border-radius: 0.5rem;
   background: $atinol-teal;
   padding: 4px 16px;

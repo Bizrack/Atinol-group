@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { SITE } from "@/lib/site-config";
 import { sendFormEmail, isEmailJsConfigured } from "@/lib/emailjs";
 import toast from "react-hot-toast";
@@ -10,6 +11,7 @@ type Message = {
   id: string;
   role: "bot" | "user";
   text: string;
+  content?: React.ReactNode;
   status?: "sending" | "sent";
 };
 
@@ -19,7 +21,15 @@ const CHAT_EMAIL_PLACEHOLDER = "chat@theatinolgroup.com";
 const BOT_REPLY_DELAY_MS = 1400;
 const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; // 5 minutes
 
+function capitalizeName(name: string) {
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
 export function ChatWidget() {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -35,6 +45,10 @@ export function ChatWidget() {
   const thinkingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inactivityTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (open && step === "welcome" && messages.length === 0) {
@@ -72,11 +86,18 @@ export function ChatWidget() {
     }
   }, [open, step, messages]);
 
-  function addBotMessage(text: string) {
-    setMessages((prev) => [
-      ...prev,
-      { id: `bot-${Date.now()}`, role: "bot", text },
-    ]);
+  function addBotMessage(textOrContent: string | React.ReactNode) {
+    if (typeof textOrContent === "string") {
+      setMessages((prev) => [
+        ...prev,
+        { id: `bot-${Date.now()}`, role: "bot", text: textOrContent },
+      ]);
+    } else {
+      setMessages((prev) => [
+        ...prev,
+        { id: `bot-${Date.now()}`, role: "bot", text: "", content: textOrContent },
+      ]);
+    }
   }
 
   function addUserMessage(text: string, status: "sending" | "sent" = "sent") {
@@ -85,7 +106,7 @@ export function ChatWidget() {
     return id;
   }
 
-  function scheduleBotReply(botText: string, nextStep: Step) {
+  function scheduleBotReply(botText: string | React.ReactNode, nextStep: Step) {
     setIsThinking(true);
     if (thinkingTimeoutRef.current) clearTimeout(thinkingTimeoutRef.current);
     thinkingTimeoutRef.current = setTimeout(() => {
@@ -126,21 +147,24 @@ export function ChatWidget() {
     if (step === "name") {
       setName(value);
       addUserMessage(value);
-      scheduleBotReply("Thanks! What's your phone number?", "phone");
+      scheduleBotReply(
+        <>Okay, great to have you <strong><em>{capitalizeName(value)}</em></strong>! What&apos;s your phone number?</>,
+        "phone"
+      );
       return;
     }
 
     if (step === "phone") {
       setPhone(value);
       addUserMessage(value);
-      scheduleBotReply("What's your email address?", "email");
+      scheduleBotReply("What&apos;s your email address?", "email");
       return;
     }
 
     if (step === "email") {
       setEmail(value);
       addUserMessage(value);
-      scheduleBotReply("What's your message or question?", "message");
+      scheduleBotReply("What&apos;s your message or question?", "message");
       return;
     }
 
@@ -218,26 +242,40 @@ export function ChatWidget() {
   const showInput = open && !minimized && step !== "done" && step !== "confirm";
   const showSubmitButton = open && !minimized && step === "confirm" && !sending;
 
-  return (
-    <>
-      {/* Floating message button - bottom-right */}
-      <button
-        type="button"
-        onClick={() => {
-          setOpen((o) => !o);
-          if (!open) setMinimized(false);
-        }}
-        className="fixed z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-atinol-teal text-white shadow-lg hover:bg-atinol-teal/90 active:scale-95 transition-all flex items-center justify-center bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] animate-breathe"
-        aria-label="Open chat"
-      >
-        <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
-        </svg>
-      </button>
+  const handleClose = () => {
+    setOpen(false);
+    setMinimized(false);
+    setMessages([]);
+    setStep("welcome");
+    setName("");
+    setPhone("");
+    setEmail("");
+    setMessageParts([]);
+  };
 
-      {/* Chat box - SCSS for reliable mobile layout */}
-      {open && (
-        <div className={`${styles.chatBox} ${minimized ? styles.minimized : ""}`}>
+  function renderWidget() {
+    const showIcon = !open || minimized;
+    const showChatBox = open && !minimized;
+
+    return (
+      <>
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setMinimized(false);
+          }}
+          className="fixed z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-atinol-teal text-white shadow-lg hover:bg-atinol-teal/90 active:scale-95 transition-all flex items-center justify-center bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] animate-breathe"
+          aria-label="Open chat"
+          style={{ display: showIcon ? "flex" : "none" }}
+        >
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+          </svg>
+        </button>
+
+        {/* Chat box - only show when open and not minimized (when minimized, icon replaces it) */}
+        <div className={styles.chatBox} style={{ display: showChatBox ? "flex" : "none" }}>
           <div className={styles.header}>
             <span className={styles.headerTitle}>Chat with {SITE.name}</span>
             <div className={styles.headerActions}>
@@ -259,7 +297,7 @@ export function ChatWidget() {
               </button>
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={handleClose}
                 className={styles.headerBtn}
                 aria-label="Close chat"
               >
@@ -276,7 +314,7 @@ export function ChatWidget() {
                 {messages.map((m) => (
                   <div key={m.id} className={`${styles.messageRow} ${m.role === "user" ? styles.user : styles.bot}`}>
                     <div className={`${styles.bubble} ${m.role === "user" ? styles.user : styles.bot}`}>
-                      <p className={styles.bubbleText}>{m.text}</p>
+                      <p className={styles.bubbleText}>{m.content ?? m.text}</p>
                       {m.role === "user" && (
                         <span className={styles.checkRow} aria-hidden>
                           {m.status === "sending" ? (
@@ -342,7 +380,14 @@ export function ChatWidget() {
             </>
           )}
         </div>
-      )}
     </>
   );
+  }
+
+  if (!mounted) return null;
+
+  const content = renderWidget();
+  return typeof document !== "undefined" && document.body
+    ? createPortal(content, document.body)
+    : content;
 }

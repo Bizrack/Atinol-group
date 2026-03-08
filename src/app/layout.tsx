@@ -82,8 +82,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
+  maximumScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "overlays-content",
 };
 
 export default function RootLayout({
