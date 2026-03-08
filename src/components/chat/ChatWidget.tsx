@@ -265,13 +265,14 @@ export function ChatWidget() {
             setOpen(true);
             setMinimized(false);
           }}
-          className="fixed z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-atinol-teal text-white shadow-lg hover:bg-atinol-teal/90 active:scale-95 transition-all flex items-center justify-center bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] animate-breathe"
+          className="fixed z-50 h-12 px-3 sm:h-14 sm:px-4 rounded-full bg-atinol-teal text-white shadow-lg hover:bg-atinol-teal/90 active:scale-95 transition-all flex items-center justify-center gap-2 bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] animate-breathe"
           aria-label="Open chat"
           style={{ display: showIcon ? "flex" : "none" }}
         >
-          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+          <svg className="w-6 h-6 sm:w-7 sm:h-7 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
             <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
           </svg>
+          <span className="font-bold text-sm sm:text-base whitespace-nowrap">Chat us</span>
         </button>
 
         {/* Chat box - only show when open and not minimized (when minimized, icon replaces it) */}

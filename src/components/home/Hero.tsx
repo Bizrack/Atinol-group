@@ -49,6 +49,13 @@ const HERO_SLIDES = [
     description:
       "Strategic guidance, risk assessments, incident response, and more. Tailored to your organization's needs.",
   },
+  {
+    src: "/Assets/hero-7.jpg",
+    alt: "Cybersecurity and IT solutions",
+    headline: "Your Trusted Security Partner",
+    description:
+      "Partner with experts who understand your challenges. We deliver practical, resilient solutions for your digital infrastructure.",
+  },
 ];
 
 function HeroSlide({
