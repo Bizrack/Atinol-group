@@ -29,13 +29,6 @@ const HERO_SLIDES = [
       "Work directly with experienced leadership. Practical guidance, clear communication, and solutions designed to scale.",
   },
   {
-    src: "/Assets/hero-4.jpg",
-    alt: "Protecting your assets in a cyber world",
-    headline: "Protecting What Matters",
-    description:
-      "Identify risks, close vulnerabilities, and respond to incidents with a team that puts your security first.",
-  },
-  {
     src: "/Assets/hero-5.jpg",
     alt: "Building secure digital infrastructure",
     headline: "Proactive Monitoring & Management",

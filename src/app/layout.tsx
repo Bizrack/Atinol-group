@@ -22,8 +22,10 @@ const defaultTitle = `${SITE.name} | ${SITE.tagline}`;
 const shortDescription =
   "T.A.G. Corp provides IT consulting, secure architecturing, cybersecurity risk assessments, and incident response. Partner with experienced leadership.";
 
+const canonicalUrl = SITE.domain.replace(/\/$/, "");
+
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.domain),
+  metadataBase: new URL(canonicalUrl),
   title: {
     default: defaultTitle,
     template: `%s | ${SITE.name}`,
@@ -40,20 +42,20 @@ export const metadata: Metadata = {
     "Zero Trust",
     "cloud security",
   ],
-  authors: [{ name: SITE.legalName, url: SITE.domain }],
+  authors: [{ name: SITE.legalName, url: canonicalUrl }],
   creator: SITE.legalName,
   publisher: SITE.legalName,
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE.domain,
+    url: canonicalUrl,
     siteName: SITE.name,
     title: defaultTitle,
     description: shortDescription,
     images: [
       {
-        url: "/opengraph-image",
+        url: `${canonicalUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: `${SITE.tagline} – ${SITE.legalName}`,
@@ -64,7 +66,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: defaultTitle,
     description: shortDescription,
-    images: ["/opengraph-image"],
+    images: [`${canonicalUrl}/opengraph-image`],
+  },
+  alternates: {
+    canonical: canonicalUrl,
   },
   robots: {
     index: true,
