@@ -37,13 +37,13 @@ export function AboutSnapshot() {
           />
         </div>
         <div className="order-1 md:order-2 space-y-6">
-          <p className="text-atinol-dark leading-relaxed text-base sm:text-lg">
+          <p className="text-atinol-muted leading-relaxed text-base sm:text-lg">
             {FIRST_PARAGRAPH}
           </p>
 
           {/* Rest of content: on mobile show only when expanded; on desktop always show */}
           <div className={`space-y-6 ${expanded ? "block" : "hidden md:block"}`}>
-            <p className="text-atinol-dark leading-relaxed text-base sm:text-lg">
+            <p className="text-atinol-muted leading-relaxed text-base sm:text-lg">
               Founded by Ayo Asekun, an experienced cloud security professional
               with hands-on experience building Zero Trust, cloud security, and
               DevSecOps programs for growing and established organizations.

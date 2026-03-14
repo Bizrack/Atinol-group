@@ -32,7 +32,7 @@ export default function AboutPage() {
               Company Story
             </h2>
             <Card variant="glass" className="!p-6 sm:!p-8">
-              <p className="text-atinol-dark leading-relaxed mb-4">
+              <p className="text-atinol-muted leading-relaxed mb-4">
                 {ABOUT_CONDENSED[0]}
               </p>
               <p className="text-atinol-muted leading-relaxed mb-4">
