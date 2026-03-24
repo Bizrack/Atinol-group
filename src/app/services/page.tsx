@@ -49,12 +49,20 @@ const SERVICE_DETAILS: Record<
     benefits: ["Proactive alerting", "Regular reviews", "Ongoing improvement"],
     price: "Custom quote",
   },
+  "ai-security": {
+    description:
+      "Design and implement security controls for AI-enabled applications, including API protection, data loss prevention, and access governance. Ensure your AI integrations are secure, compliant, and built for scale.",
+    whoFor:
+      "Organizations adopting or scaling AI features who need governance and protection.",
+    benefits: ["API protection", "DLP alignment", "Access governance", "Compliance-ready design"],
+    price: "Custom quote",
+  },
 };
 
 export const metadata = {
   title: "Services | The Atinol Group",
   description:
-    "IT consulting, secure architecturing, risk and vulnerability assessments, incident response, and proactive monitoring. Tailored to your needs.",
+    "IT consulting, secure architecturing, AI security, risk and vulnerability assessments, incident response, and proactive monitoring. Tailored to your needs.",
 };
 
 export default function ServicesPage() {

@@ -9,14 +9,14 @@ export const SITE = {
   linkedInCompany: "https://www.linkedin.com/company/91166117",
   linkedInCEO: "https://www.linkedin.com/in/ayo-asekun",
   ceoName: "Ayo Asekun",
-  /** Calendly (or Cal.com) URL for Book page – embed and link */
-  calendarUrl: "https://calendly.com/mayowasamuel86/tag-consultation",
+  /** Calendly (or Cal.com) URL for Book page – embed and link. Leave empty until configured. */
+  calendarUrl: "",
 } as const;
 
 /** Condensed “about” from client brief (About & Services). */
 export const ABOUT_CONDENSED = [
   "At T.A.G. Corp., we pride ourselves on providing top-notch expertise and customized solutions to meet the unique needs of each of our clients.",
-  "Our comprehensive suite of services includes IT consulting, secure architecturing, cybersecurity risk assessments, vulnerability assessments, incident response, and more. Whether you need help developing a cybersecurity strategy, implementing secure networks, or responding to a security incident, we have the expertise and experience to help you achieve your goals.",
+  "Our comprehensive suite of services includes IT consulting, secure architecturing, AI security, cybersecurity risk assessments, vulnerability assessments, incident response, and more. Whether you need help developing a cybersecurity strategy, implementing secure networks, or responding to a security incident, we have the expertise and experience to help you achieve your goals.",
   "At our company, we believe that cybersecurity is not just a compliance requirement, but an ongoing process that requires constant attention and monitoring. That's why we offer proactive monitoring and management services to help our clients stay ahead of the curve and keep their business safe from cyber threats.",
 ] as const;
 
@@ -78,6 +78,13 @@ export const SERVICES = [
     shortDesc:
       "Ongoing monitoring and management to keep your business ahead of threats.",
     slug: "monitoring-management",
+  },
+  {
+    id: "ai-security",
+    name: "AI Security",
+    shortDesc:
+      "API protection, data loss prevention, and access governance for AI-enabled apps—secure, compliant, and built to scale.",
+    slug: "ai-security",
   },
 ] as const;
 

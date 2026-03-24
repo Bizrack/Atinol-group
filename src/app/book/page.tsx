@@ -35,6 +35,9 @@ export default async function BookPage(props: BookPageProps) {
     : "Share your contact details and a short description. We need: name, email, phone (optional), and what you're looking for.";
   const formHeading = service ? `Request quote: ${service.name}` : "Send a request";
 
+  const calendarUrl = (SITE.calendarUrl as string).trim();
+  const hasCalendar = calendarUrl.length > 0 && calendarUrl !== "#";
+
   return (
     <>
       <section className="mt-14 sm:mt-16 pt-8 pb-8 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-slate-900/95 backdrop-blur-xl border-b border-white/10 text-white">
@@ -70,15 +73,18 @@ export default async function BookPage(props: BookPageProps) {
               </h2>
               <Card variant="glass" className="border-l-4 border-l-atinol-teal">
                 <p className="text-atinol-muted text-sm mb-6">
-                  Prefer to pick a time? Open our calendar to book a slot, or
-                  email us to arrange a call.
+                  {hasCalendar
+                    ? "Prefer to pick a time? Open our calendar to book a slot, or email us to arrange a call."
+                    : "We’ll confirm a time by email—use the form or reach out below."}
                 </p>
-                <a
-                  href={SITE.calendarUrl}
-                  className="inline-flex items-center justify-center w-full rounded-xl px-4 py-3.5 min-h-[48px] font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 active:bg-atinol-teal/15 transition-colors mb-4 touch-manipulation"
-                >
-                  Open calendar to book →
-                </a>
+                {hasCalendar && (
+                  <a
+                    href={calendarUrl}
+                    className="inline-flex items-center justify-center w-full rounded-xl px-4 py-3.5 min-h-[48px] font-semibold border-2 border-atinol-teal text-atinol-teal hover:bg-atinol-teal/10 active:bg-atinol-teal/15 transition-colors mb-4 touch-manipulation"
+                  >
+                    Open calendar to book →
+                  </a>
+                )}
                 <p className="text-atinol-muted text-sm">
                   Or email:{" "}
                   <a
@@ -92,15 +98,15 @@ export default async function BookPage(props: BookPageProps) {
             </div>
           </div>
 
-          {SITE.calendarUrl && (SITE.calendarUrl as string) !== "#" && (
+          {hasCalendar && (
             <div className="mt-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-gradient-brand mb-6 text-center">
                 Or pick a time below
               </h2>
-              <CalendarEmbed calendarUrl={SITE.calendarUrl} />
+              <CalendarEmbed calendarUrl={calendarUrl} />
               <p className="text-center text-atinol-muted text-sm mt-4">
                 <a
-                  href={SITE.calendarUrl}
+                  href={calendarUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-atinol-teal font-medium hover:underline"
